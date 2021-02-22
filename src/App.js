@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import "./styles.css";
 
 function App() {
   const [product, setProduct] = useState({
@@ -9,13 +10,16 @@ function App() {
     categorie: "",
     package_size: "",
     contact: "",
-    tags: "",
+    tags: [],
     sale: false,
   });
 
   const clickHandler = (event) => {
     const field = event.target;
-    const value = event.target.value;
+    const value =
+      field.type === "radio" || field.type === "checkbox"
+        ? field.checked
+        : field.value;
 
     setProduct({ ...product, [field.name]: value });
 
@@ -77,21 +81,24 @@ function App() {
           type="radio"
           name="radio"
           onChange={clickHandler}
-          value={product.package_size}
+          value="small"
+          checked={product.package_size === "small"}
         />
         S
         <input
           type="radio"
           name="radio"
           onChange={clickHandler}
-          value={product.package_size}
+          value="medium"
+          checked={product.package_size === "medium"}
         />
         M
         <input
           type="radio"
           name="radio"
           onChange={clickHandler}
-          value={product.package_size}
+          value="large"
+          checked={product.package_size === "large"}
         />
         L
       </Label>
@@ -123,6 +130,7 @@ function App() {
           type="checkbox"
           name="sale"
           onChange={clickHandler}
+          value={1}
           checked={product.sale}
         />
       </Label>
@@ -134,11 +142,14 @@ export default App;
 
 const Main = styled.div`
   text-align: center;
-  padding: 0 1rem;
+  padding: 3rem 1rem 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  background: linear-gradient(lightgrey, whitesmoke);
+  height: 100vh;
+  width: 100vw;
 `;
 
 const Label = styled.label`
