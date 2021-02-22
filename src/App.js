@@ -7,7 +7,7 @@ function App() {
     product_name: "",
     price: 0,
     currency: "",
-    categorie: "",
+    categories: "",
     package_size: "",
     contact: "",
     tags: [],
@@ -67,7 +67,7 @@ function App() {
         <select
           name="categories"
           onChange={clickHandler}
-          value={product.categorie}
+          value={product.categories}
         >
           <option value="clothing">clothing</option>
           <option value="birth control">birth control</option>
@@ -76,10 +76,10 @@ function App() {
       </Label>
       <br />
       <Label>
-        package size
+        package size <br />
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
           value="small"
           checked={product.package_size === "small"}
@@ -87,7 +87,7 @@ function App() {
         S
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
           value="medium"
           checked={product.package_size === "medium"}
@@ -95,7 +95,7 @@ function App() {
         M
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
           value="large"
           checked={product.package_size === "large"}
@@ -108,7 +108,7 @@ function App() {
         <br />
         <input
           type="email"
-          name="support"
+          name="contact"
           onChange={clickHandler}
           value={product.contact}
         />
