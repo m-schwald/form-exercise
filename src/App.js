@@ -104,7 +104,7 @@ function App() {
         <br />
         <input
           type="email"
-          name="support"
+          name="contact"
           onChange={clickHandler}
           value={product.contact}
         />
@@ -133,6 +133,7 @@ function App() {
       <p>Product: {product.product_name}</p>
       <p>On Sale: {product.sale ? "yes" : "no"}</p>
       <p>Package Size: {product.package_size}</p>
+      <p>Email: {product.contact}</p>
     </Main>
   );
 }
