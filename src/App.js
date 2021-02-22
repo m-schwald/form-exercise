@@ -6,7 +6,7 @@ function App() {
     product_name: "",
     price: 0,
     currency: "",
-    categorie: "",
+    categories: "",
     package_size: "",
     contact: "",
     tags: "",
@@ -15,7 +15,7 @@ function App() {
 
   const clickHandler = (event) => {
     const field = event.target;
-    const value = event.target.value;
+    const value = field.type === "checkbox" ? field.checked : field.value;
 
     setProduct({ ...product, [field.name]: value });
 
@@ -63,7 +63,7 @@ function App() {
         <select
           name="categories"
           onChange={clickHandler}
-          value={product.categorie}
+          value={product.categories}
         >
           <option value="clothing">clothing</option>
           <option value="birth control">birth control</option>
@@ -75,23 +75,26 @@ function App() {
         package size
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
-          value={product.package_size}
+          value="small"
+          checked={product.package_size === "small"}
         />
         S
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
-          value={product.package_size}
+          value="medium"
+          checked={product.package_size === "medium"}
         />
         M
         <input
           type="radio"
-          name="radio"
+          name="package_size"
           onChange={clickHandler}
-          value={product.package_size}
+          value="large"
+          checked={product.package_size === "large"}
         />
         L
       </Label>
@@ -101,7 +104,7 @@ function App() {
         <br />
         <input
           type="email"
-          name="support"
+          name="contact"
           onChange={clickHandler}
           value={product.contact}
         />
@@ -126,6 +129,11 @@ function App() {
           checked={product.sale}
         />
       </Label>
+      <p>You entered the following:</p>
+      <p>Product: {product.product_name}</p>
+      <p>On Sale: {product.sale ? "yes" : "no"}</p>
+      <p>Package Size: {product.package_size}</p>
+      <p>Email: {product.contact}</p>
     </Main>
   );
 }
