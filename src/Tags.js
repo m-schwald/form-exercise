@@ -1,8 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Tags({ onCreateTag, tags }) {
-  const [value, setValue] = useState("");
+const active = "";
+
+export default function Tags({
+  onCreateTag,
+  tags,
+  onDeleteTag,
+  onDeleteLastTag,
+  active,
+}) {
+  const [value, setValue] = useState([]);
 
   const handleChange = (event) => setValue(event.target.value);
 
@@ -10,7 +18,10 @@ export default function Tags({ onCreateTag, tags }) {
     if (event.key === "Enter") {
       event.preventDefault();
       onCreateTag(value);
-      setValue("");
+      setValue([]);
+    } else if (event.key === "Backspace") {
+      event.preventDefault();
+      onDeleteLastTag();
     }
   };
 
@@ -19,18 +30,21 @@ export default function Tags({ onCreateTag, tags }) {
       <Label>
         product tags
         <br />
-        <input
+      </Label>
+      <Flexbox>
+        {tags.map((tag, index) => (
+          <TagElement key={index}>
+            {tag}
+            <i onClick={() => onDeleteTag(tag)}>&times;</i>
+          </TagElement>
+        ))}
+        <NewInput
           type="text"
           name="tag"
           onKeyDown={handleKeyDown}
           onChange={handleChange}
           value={value}
         />
-      </Label>
-      <Flexbox>
-        {tags.map((tag, index) => (
-          <TagElement key={index}>{tag}</TagElement>
-        ))}
       </Flexbox>
     </>
   );
@@ -41,15 +55,24 @@ const Label = styled.label`
 `;
 
 const Flexbox = styled.div`
+  align-items: center;
+  background: white;
   display: flex;
   gap: 0.5rem;
-  width: 80%;
   flex-wrap: wrap;
   justify-content: center;
+  width: auto;
+  height: 2rem;
+  padding: 0.3rem;
 `;
 
 const TagElement = styled.span`
-  border-radius: 3px;
   background: #fa7a55;
-  padding: 0.2rem;
+  border-radius: 3px;
+  padding: 0.3rem;
+`;
+
+const NewInput = styled.input`
+  border: none;
+  outline: none;
 `;

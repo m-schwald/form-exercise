@@ -25,4 +25,5 @@ const Wrapper = styled.section`
   padding: 1rem;
   background: url("https://images.unsplash.com/photo-1548685913-fe6678babe8d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzl8fHRleHR1cmV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60");
   border: inset 2px black;
+  color: darkslategray;
 `;

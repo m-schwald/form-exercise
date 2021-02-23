@@ -38,4 +38,5 @@ const Main = styled.div`
   align-items: center;
   gap: 0.5rem;
   color: white;
+  font-weight: 500;
 `;

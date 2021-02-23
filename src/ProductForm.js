@@ -46,6 +46,24 @@ export default function ProductForm({ submitFunction }) {
     });
   };
 
+  function deleteTag(tagToDelete) {
+    const newTags = product.tags.filter((tag) => tag !== tagToDelete);
+    setProduct({
+      ...product,
+      tags: newTags,
+    });
+  }
+
+  function deleteLastTag() {
+    const newTags = product.tags.filter(
+      (currywurst, index) => index !== product.tags.length - 1
+    );
+    setProduct({
+      ...product,
+      tags: newTags,
+    });
+  }
+
   return (
     <>
       <h1>new product</h1>
@@ -136,7 +154,12 @@ export default function ProductForm({ submitFunction }) {
       </Label>
       <br />
 
-      <Tags onCreateTag={addTags} tags={product.tags} />
+      <Tags
+        onCreateTag={addTags}
+        tags={product.tags}
+        onDeleteTag={deleteTag}
+        onDeleteLastTag={deleteLastTag}
+      />
 
       <Label>
         on Sale
@@ -148,12 +171,12 @@ export default function ProductForm({ submitFunction }) {
         />
       </Label>
       <Flexbox>
-        <button type="submit" onClick={submitForm}>
+        <Button type="submit" onClick={submitForm}>
           Add product
-        </button>
-        <button type="reset" onClick={resetForm}>
+        </Button>
+        <Button type="reset" onClick={resetForm}>
           Cancel
-        </button>
+        </Button>
         {/*   <button onClick={deleteAllProducts}>delete all products</button> */}
       </Flexbox>
     </>
@@ -167,4 +190,18 @@ const Label = styled.label`
 const Flexbox = styled.div`
   display: flex;
   gap: 0.5rem;
+`;
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  color: white;
+  background: radial-gradient(black, darkslategray);
+  border: inset white 2px;
+
+  &:hover {
+    color: gold;
+    background: radial-gradient(darkslategray, black);
+    transform: rotate(360deg);
+    transition: 0.1s all ease;
+  }
 `;
