@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Tags from "./Tags";
 
 export default function ProductForm({ submitFunction }) {
   const initialProduct = {
@@ -9,7 +10,7 @@ export default function ProductForm({ submitFunction }) {
     categories: "",
     package_size: "",
     contact: "",
-    tags: "",
+    tags: [],
     sale: false,
   };
 
@@ -37,6 +38,13 @@ export default function ProductForm({ submitFunction }) {
     event.preventDefault();
     deleteProducts(deleteProducts);
   } */
+
+  const addTags = (tag) => {
+    setProduct({
+      ...product,
+      tags: [...product.tags, tag],
+    });
+  };
 
   return (
     <>
@@ -127,16 +135,9 @@ export default function ProductForm({ submitFunction }) {
         />
       </Label>
       <br />
-      <Label>
-        product tags
-        <br />
-        <input
-          type="text"
-          name="tags"
-          onChange={clickHandler}
-          value={product.tags}
-        />
-      </Label>
+
+      <Tags onCreateTag={addTags} tags={product.tags} />
+
       <Label>
         on Sale
         <input

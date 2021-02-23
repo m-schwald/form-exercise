@@ -27,7 +27,7 @@ function App() {
 export default App;
 
 const Main = styled.div`
-  background: linear-gradient(whitesmoke, gold);
+  background: url("https://images.unsplash.com/photo-1613859080556-6e1e98c98723?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=60");
   background-size: cover;
   height: 100%;
   min-height: 100vh;
@@ -37,4 +37,5 @@ const Main = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  color: white;
 `;
